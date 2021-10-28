@@ -1,0 +1,7 @@
+---
+- name: Configure Kali Linux
+  hosts: all
+  connection: local
+  vars_files:
+    - vars/all.yml
+  roles: []

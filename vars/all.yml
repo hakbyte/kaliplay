@@ -1,0 +1,18 @@
+---
+
+#
+# System
+#
+
+
+hostname: kali
+timezone: Europe/Berlin
+locale: en_US.UTF-8
+
+#
+# User
+#
+
+username: hak
+password: hak
+shell: /usr/bin/zsh
