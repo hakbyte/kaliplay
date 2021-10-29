@@ -7,3 +7,4 @@
     - vars/all.yml
   roles:
     - role: base
+    - role: editor
