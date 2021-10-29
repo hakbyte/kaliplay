@@ -1,0 +1,16 @@
+---
+- name: Create Alacritty config directory
+  file:
+    path: ~/.config/alacritty
+    state: directory
+    mode: '700'
+  tags:
+    - alacritty
+
+- name: Push Alacritty config file
+  copy:
+    src: alacritty.yml
+    dest: ~/.config/alacritty/alacritty.yml
+    mode: '600'
+  tags:
+    - alacritty
