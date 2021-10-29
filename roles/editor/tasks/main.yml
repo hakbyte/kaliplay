@@ -1,0 +1,13 @@
+---
+- name: Install Neovim
+  apt:
+    name: neovim
+  tags:
+    - neovim
+
+- name: Set Neovim as default editor
+  community.general.alternatives:
+    name: editor
+    path: /usr/bin/nvim
+  tags:
+    - neovim
