@@ -9,3 +9,4 @@
     - role: base
     - role: hostname
     - role: editor
+    - role: user
