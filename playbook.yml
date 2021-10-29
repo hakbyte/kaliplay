@@ -11,3 +11,5 @@
     - role: timezone
     - role: editor
     - role: user
+    - role: vbox
+      when: target is defined and target == "vbox"
