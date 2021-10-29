@@ -9,6 +9,13 @@ hostname: kali
 timezone: Europe/Berlin
 locale: en_US.UTF-8
 
+# Keyboard layout configuration (`/etc/default/keyboard`). See `man keyboard`
+# for more details
+keyboard:
+  model: pc105
+  layout: us
+  variant: intl
+
 #
 # User
 #
