@@ -23,6 +23,13 @@ pkg:
   # Fonts
   - fonts-jetbrains-mono
 
+  # Hacking tools
+  - apktool
+  - feroxbuster
+  - gobuster
+  - remmina
+  - seclists
+
 deb:
   # Alacritty
   - https://github.com/alacritty/alacritty/releases/download/v0.4.2/Alacritty-v0.4.2-ubuntu_18_04_amd64.deb
