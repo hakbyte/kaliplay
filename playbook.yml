@@ -8,5 +8,6 @@
   roles:
     - role: base
     - role: hostname
+    - role: timezone
     - role: editor
     - role: user
