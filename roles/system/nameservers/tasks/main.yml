@@ -1,0 +1,32 @@
+---
+- name: Install resolvconf
+  apt:
+    name: resolvconf
+  tags:
+    - nameservers
+
+- name: Enable resolvconf service
+  service:
+    name: resolvconf
+    enabled: yes
+    state: started
+  tags:
+    - nameservers
+
+- name: Add DNS resolvers entries
+  blockinfile:
+    path: /etc/resolvconf/resolv.conf.d/head
+    block: |
+      {% for n in nameservers %}
+      nameserver {{ n }}
+      {% endfor %}
+  register: resolv_conf
+  tags:
+    - nameservers
+
+- name: Run resolvconf to update /etc/resolv.conf
+  command:
+    cmd: /usr/sbin/resolvconf -u
+  when: resolv_conf.changed
+  tags:
+    - nameservers
