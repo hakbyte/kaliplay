@@ -9,6 +9,7 @@
     - role: base
     - role: hostname
     - role: timezone
+    - role: sudo
     - role: editor
     - role: user
     - role: vbox
