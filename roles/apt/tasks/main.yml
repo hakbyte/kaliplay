@@ -1,0 +1,7 @@
+---
+- name: Update package lists if older than 1 hour
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  tags:
+    - apt

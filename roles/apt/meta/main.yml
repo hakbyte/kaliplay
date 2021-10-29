@@ -1,0 +1,9 @@
+galaxy_info:
+  author: github.com/hakbyte
+  description: Update package lists if older than 1 hour
+  license: MIT
+  min_ansible_version: 2.1
+  platforms:
+    - name: Debian
+      versions:
+        - bullseye
