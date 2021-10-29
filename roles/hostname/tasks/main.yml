@@ -1,0 +1,8 @@
+---
+- name: Set hostname to {{ hostname }}
+  hostname:
+    name: "{{ hostname }}"
+    use: systemd
+  when: hostname is defined
+  tags:
+    - hostname
