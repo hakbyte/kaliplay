@@ -1,0 +1,85 @@
+---
+- name: Check if user's group exists
+  getent:
+    database: group
+    key: "{{ username }}"
+    fail_key: no
+  when: username is defined
+  tags:
+    - user
+
+- name: Create user group
+  group:
+    name: "{{ username }}"
+    state: present
+  when:
+    - username is defined
+    - getent_group[username] == None
+  tags:
+    - user
+
+- name: Check if user exists
+  getent:
+    database: passwd
+    key: "{{ username }}"
+    fail_key: no
+  when: username is defined
+  tags:
+    - user
+
+- name: Create user and add it to its own group
+  user:
+    name: "{{ username }}"
+    password: "{{ password | password_hash('sha512') }}"
+    shell: /bin/sh
+    group: "{{ username }}"
+  when:
+    - username is defined
+    - password is defined
+    - getent_passwd[username] == None
+  tags:
+    - user
+
+- name: Recheck if user exists
+  getent:
+    database: passwd
+    key: "{{ username }}"
+    fail_key: no
+  when: username is defined
+  tags:
+    - user
+
+- name: Set user shell to {{ shell }}
+  user:
+    name: "{{ username }}"
+    shell: "{{ shell }}"
+  when:
+    - username is defined
+    - shell is defined
+    - getent_passwd[username] != None
+  tags:
+    - user
+
+- name: Add user to Kali's default groups (including sudo)
+  user:
+    name: "{{ username }}"
+    groups:
+      - dialout
+      - cdrom
+      - floppy
+      - sudo
+      - audio
+      - dip
+      - video
+      - plugdev
+      - netdev
+      - bluetooth
+      - wireshark
+      - scanner
+      - kaboxer
+    append: yes
+  when:
+    - username is defined
+    - getent_passwd[username] != None
+  tags:
+    - user

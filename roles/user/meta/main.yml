@@ -1,0 +1,9 @@
+galaxy_info:
+  author: github.com/hakbyte
+  description: Add a new user to the system and grant him/her admin rights
+  license: MIT
+  min_ansible_version: 2.1
+  platforms:
+    - name: Debian
+      versions:
+        - bullseye
