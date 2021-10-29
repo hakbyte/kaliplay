@@ -4,10 +4,13 @@
 # System
 #
 
-
 hostname: kali
 timezone: Europe/Berlin
 locale: en_US.UTF-8
+nameservers:
+  - 1.1.1.1 # Cloudfare
+  - 9.9.9.9 # Quad9
+  - 8.8.8.8 # Google
 
 # Keyboard layout configuration (`/etc/default/keyboard`). See `man keyboard`
 # for more details
