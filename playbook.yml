@@ -6,11 +6,11 @@
   vars_files:
     - vars/all.yml
   roles:
-    - role: base
-    - role: hostname
-    - role: timezone
-    - role: sudo
-    - role: editor
-    - role: user
-    - role: vbox
+    - role: system/base
+    - role: system/hostname
+    - role: system/timezone
+    - role: system/sudo
+    - role: system/editor
+    - role: system/user
+    - role: system/vbox
       when: target is defined and target == "vbox"
