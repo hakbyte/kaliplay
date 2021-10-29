@@ -1,0 +1,15 @@
+---
+- name: Install VirtualBox guest additions
+  apt:
+    name: virtualbox-guest-x11
+  tags:
+    - vbox
+
+- name: Add user to vboxsf group
+  user:
+    name: "{{ username }}"
+    groups: vboxsf
+    append: yes
+  when: username is defined
+  tags:
+    - vbox
