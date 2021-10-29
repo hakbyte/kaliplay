@@ -2,4 +2,5 @@
 - name: Deploy dotfiles for Kali Linux
   hosts: all
   connection: local
-  roles: []
+  roles:
+    - role: dots/alacritty
