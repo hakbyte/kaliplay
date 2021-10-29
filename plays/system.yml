@@ -8,6 +8,7 @@
   roles:
     - role: system/base
     - role: system/hostname
+    - role: system/nameservers
     - role: system/timezone
     - role: system/sudo
     - role: system/editor
