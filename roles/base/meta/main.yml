@@ -1,0 +1,11 @@
+galaxy_info:
+  author: github.com/hakbyte
+  description: Install base packages
+  license: MIT
+  min_ansible_version: 2.1
+  platforms:
+    - name: Debian
+      versions:
+        - bullseye
+dependencies:
+  - role: apt

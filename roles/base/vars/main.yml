@@ -1,0 +1,29 @@
+---
+pkg:
+  # Command line utilities
+  - bat
+  - bc
+  - feh
+  - fortune-mod
+  - fzf
+  - grc
+  - htop
+  - httpie
+  - jq
+  - ltrace
+  - neovim
+  - ripgrep
+  - strace
+  - xclip
+
+  # Shell plugins/extensions
+  - bash-completion
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+
+  # Fonts
+  - fonts-jetbrains-mono
+
+deb:
+  # Alacritty
+  - https://github.com/alacritty/alacritty/releases/download/v0.4.2/Alacritty-v0.4.2-ubuntu_18_04_amd64.deb

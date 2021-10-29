@@ -1,0 +1,28 @@
+---
+- name: Install base packages
+  apt:
+    name: "{{ pkg }}"
+  tags:
+    - base
+
+- name: Install base packages (*.deb)
+  apt:
+    deb: "{{ item }}"
+  loop: "{{ deb }}"
+  tags:
+    - base
+    - deb
+
+- name: Push keyboard input options
+  template:
+    src: keyboard.j2
+    dest: /etc/default/keyboard
+    mode: '644'
+  tags:
+    - base
+
+- name: Make /usr/bin/python point to Python3
+  apt:
+    name: python-is-python3
+  tags:
+    - base
