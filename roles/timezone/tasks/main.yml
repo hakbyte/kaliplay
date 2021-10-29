@@ -1,0 +1,8 @@
+---
+- name: Set timezone to {{ timezone }}
+  timezone:
+    name: "{{ timezone }}"
+    hwclock: UTC
+  when: timezone is defined
+  tags:
+    - timezone
