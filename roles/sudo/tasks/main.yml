@@ -1,0 +1,11 @@
+---
+- name: Allow users in the sudo group to run all commands
+  lineinfile:
+    path: /etc/sudoers.d/sudo-no-password
+    state: present
+    line: "%sudo ALL=(ALL) NOPASSWD:ALL"
+    validate: /usr/sbin/visudo -cf %s
+    create: yes
+    mode: '400'
+  tags:
+    - sudo
