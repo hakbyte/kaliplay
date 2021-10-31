@@ -5,3 +5,4 @@
   roles:
     - role: dots/alacritty
     - role: dots/homedirs
+    - role: dots/xdg
