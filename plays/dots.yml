@@ -4,3 +4,4 @@
   connection: local
   roles:
     - role: dots/alacritty
+    - role: dots/homedirs
