@@ -1,0 +1,11 @@
+---
+homedirs:
+  - .local/bin
+  - .ssh
+  - attic
+  - boxes
+  - code
+  - desktop
+  - down
+  - media
+  - pics

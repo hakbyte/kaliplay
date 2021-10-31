@@ -1,0 +1,9 @@
+---
+- name: Create user home directories
+  file:
+    path: ~/{{ item }}
+    state: directory
+    mode: '700'
+  loop: "{{ homedirs }}"
+  tags:
+    - homedirs
