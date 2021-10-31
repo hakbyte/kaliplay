@@ -1,0 +1,34 @@
+---
+- name: Create Neovim directory structure
+  file:
+    path: ~/.config/{{ item }}
+    state: directory
+    mode: '700'
+  loop:
+    - nvim
+    - nvim/plugged
+    - nvim/undo
+    - nvim/autoload
+  tags:
+    - neovim
+
+- name: Push Neovim config file
+  copy:
+    src: init.vim
+    dest: ~/.config/nvim/init.vim
+    mode: '600'
+  tags:
+    - neovim
+
+- name: Install vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: ~/.config/nvim/autoload/plug.vim
+    mode: '600'
+  tags:
+    - neovim
+
+- name: Install Neovim plugins
+  command: nvim --headless +PlugInstall +qall
+  tags:
+    - neovim
