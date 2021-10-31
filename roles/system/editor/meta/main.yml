@@ -9,4 +9,4 @@ galaxy_info:
       versions:
         - bullseye
 dependencies:
-  - role: apt
+  - role: system/apt
