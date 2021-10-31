@@ -17,9 +17,9 @@ window:
   #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
-  #dimensions:
-  #  columns: 0
-  #  lines: 0
+  dimensions:
+    columns: 120
+    lines: 30
 
   # Window position (changes require restart)
   #
@@ -34,11 +34,11 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 6
-    y: 6
+    x: 20
+    y: 20
 
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  dynamic_padding: true
 
   # Window decorations
   #
@@ -136,7 +136,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 11.0
+  size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -252,8 +252,8 @@ font:
 colors:
   # Default colors
   primary:
-    background: '#23272e'
-    foreground: '#abb2bf'
+    background: '#14161a'
+    foreground: '#74b844'
 
   # Normal colors
   normal:
