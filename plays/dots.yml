@@ -6,3 +6,4 @@
     - role: dots/alacritty
     - role: dots/homedirs
     - role: dots/xdg
+    - role: dots/neovim
