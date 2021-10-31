@@ -1,0 +1,8 @@
+---
+- name: Push XDG config file
+  copy:
+    src: user-dirs.dirs
+    dest: ~/.config/user-dirs.dirs
+    mode: '600'
+  tags:
+    - xdg
