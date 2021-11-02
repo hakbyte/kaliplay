@@ -1,0 +1,145 @@
+#
+# First, a word from our sponsor!
+#
+
+fortune_cmd="/usr/bin/fortune"
+if [ $(command -v $fortune_cmd) ]; then
+    $fortune_cmd
+fi
+
+#
+# Zsh plugins
+#
+
+# Auto suggestions -- requires `zsh-autosuggestions` package
+zsh_autosuggestions="/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if [ -f $zsh_autosuggestions ]; then
+    source $zsh_autosuggestions
+fi
+
+# Syntax highlighting -- requires `zsh-syntax-highlighting` package
+zsh_syntax_highlighting="/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [ -f $zsh_syntax_highlighting ]; then
+    source $zsh_syntax_highlighting
+fi
+
+# Fzf key-bindings -- requires `fzf` package
+fzf_key_bindings="/usr/share/doc/fzf/examples/key-bindings.zsh"
+if [ -f $fzf_key_bindings ]; then
+    source $fzf_key_bindings
+    # Change suggestion color
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#abb2bf'
+fi
+
+#
+# Key bindings
+#
+
+bindkey -e                                        # enable Emacs key bindings
+bindkey '^ '      autosuggest-execute             # ctrl + space
+bindkey ' '       magic-space                     # enable history expansion on space
+bindkey '^D'      kill-word                       # ctrl + d
+bindkey '^[[1;5C' forward-word                    # ctrl + right arrow
+bindkey '^[[1;5D' backward-word                   # ctrl + left arrow
+bindkey '^[[H'    beginning-of-line               # home key
+bindkey '^[[H'    beginning-of-line               # home key
+bindkey '^[[F'    end-of-line                     # end key
+bindkey '^[[3~'   delete-char                     # delete key
+bindkey '^[[Z'    undo                            # shift + tab to undo last action
+bindkey '^[[5~'   beginning-of-buffer-or-history  # page up key
+bindkey '^[[6~'   end-of-buffer-or-history        # page down key
+
+#
+# Enable completion features
+#
+
+autoload -Uz compinit
+compinit -d ~/.cache/zcompdump
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+#
+# Prompt
+#
+
+# Customize Git prompt
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=(precmd_vcs_info)
+setopt prompt_subst
+zstyle ':vcs_info:git:*' formats '%F{white} [%b]%f'
+zstyle ':vcs_info:*' enable git
+
+# Define prompt based on user ID
+configure_prompt() {
+    prompt_sep="@"
+    prompt_symbol=" "
+    prompt_color="cyan"
+    if [ "$EUID" -eq 0 ]; then
+        prompt_sep="💀"
+        prompt_color="red"
+    fi
+    PROMPT='%F{${prompt_color}}%n%F{yellow}${prompt_sep}%F{$prompt_color}%m %F{magenta}%~%B${vcs_info_msg_0_%}%f%b%F{${prompt_color}}${prompt_symbol}%f '
+    RPROMPT='%(?..%{$fg[red]%}%? ↵%{$reset_color%})'
+    # Don't highlight partial lines
+    PROMPT_EOL_MARK=''
+}
+
+configure_prompt
+
+#
+# Environment
+#
+
+# Add `~/.local/bin` to non-root users
+if [ "$EUID" -ne 0 ]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+EDITOR=nvim
+FZF_DEFAULT_COMMAND='/usr/bin/rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+# Configure `time` format
+TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
+
+# Customize word delimiters when in command line editing mode
+WORDCHARS=${WORDCHARS//[\/.=-]}
+
+# Configure history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+setopt hist_ignore_dups        # ignore duplicated commands history list
+setopt hist_expire_dups_first  # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_space       # ignore commands that start with space
+setopt hist_verify             # show command with history expansion to user before running it
+
+#
+# Misc
+#
+
+# Required by `~/.config/systemd/user/ssh-agent.service`
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+
+# Make typing `cd` needless
+setopt auto_cd
+
+# Load colors
+autoload -U colors; colors
+
+# Load aliases
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
+fi

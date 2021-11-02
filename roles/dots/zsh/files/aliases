@@ -1,0 +1,45 @@
+#
+# Aliases
+#
+
+# Basic commands
+
+alias -- -="cd -"
+alias ...="cd ../.."
+alias bc="/usr/bin/bc -l"
+alias diff="/usr/bin/diff --color=auto"
+alias feh="feh --scale-down --auto-zoom --image-bg black"
+alias grep="/usr/bin/grep --color=always"
+alias h="/usr/bin/htop -M"
+alias ks="kill -9 $$"
+alias l="/usr/bin/ls -lh --color=auto"
+alias la="/usr/bin/ls -lhA --color=auto"
+alias lr="/usr/bin/ls -lhAR --color=auto"
+alias ls="/usr/bin/ls --color=auto"
+alias lt="/usr/bin/ls -lhArt --color=auto"
+alias sui="/usr/bin/sudo -i"
+alias v="/usr/bin/nvim"
+
+# Tmux
+
+alias t="/usr/bin/tmux new -As main"
+alias tls="/usr/bin/tmux ls"
+tn() { /usr/bin/tmux new -As "${1:-main}"; }          # create new session (defaults to `main`)
+ta() { /usr/bin/tmux attach -t "${1:-main}"; }        # attatch to session (defaults to `main`)
+tk() { /usr/bin/tmux kill-session -t "${1:-main}"; }  # kill session (defaults to `main`)
+
+# Git
+
+alias g="/usr/bin/git"
+alias ga="/usr/bin/git add"
+alias gaa="/usr/bin/git add --all"
+alias gc="/usr/bin/git commit -v"
+alias gf="/usr/bin/git fetch"
+alias gl="/usr/bin/git pull"
+alias glg="/usr/bin/git log --oneline --decorate --graph"
+alias glp="/usr/bin/git log -p"
+alias gp="/usr/bin/git push"
+alias gpf="/usr/bin/git push --force"
+alias grs="/usr/bin/git restore --staged"
+alias gss="/usr/bin/git status -s"
+alias gst="/usr/bin/git status"

@@ -1,0 +1,16 @@
+---
+- name: Push Zsh config
+  copy:
+    src: zshrc
+    dest: ~/.zshrc
+    mode: '600'
+  tags:
+    - zsh
+
+- name: Push aliases file
+  copy:
+    src: aliases
+    dest: ~/.aliases
+    mode: '600'
+  tags:
+    - zsh
