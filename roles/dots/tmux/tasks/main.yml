@@ -1,0 +1,8 @@
+---
+- name: Push Tmux config file
+  copy:
+    src: tmux.conf
+    dest: ~/.tmux.conf
+    mode: '600'
+  tags:
+    - tmux
