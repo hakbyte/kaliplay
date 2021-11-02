@@ -7,3 +7,19 @@
   loop: "{{ homedirs }}"
   tags:
     - homedirs
+
+- name: Delete default home folders created by XDG
+  file:
+    path: ~/{{ item }}
+    state: absent
+  loop:
+    - Desktop
+    - Documents
+    - Downloads
+    - Music
+    - Pictures
+    - Public
+    - Templates
+    - Videos
+  tags:
+    - homedirs
