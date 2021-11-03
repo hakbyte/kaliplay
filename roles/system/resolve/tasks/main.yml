@@ -3,7 +3,7 @@
   apt:
     name: resolvconf
   tags:
-    - nameservers
+    - resolve
 
 - name: Enable resolvconf service
   service:
@@ -11,7 +11,7 @@
     enabled: yes
     state: started
   tags:
-    - nameservers
+    - resolve
 
 - name: Add DNS resolvers entries
   blockinfile:
@@ -22,11 +22,11 @@
       {% endfor %}
   register: resolv_conf
   tags:
-    - nameservers
+    - resolve
 
 - name: Run resolvconf to update /etc/resolv.conf
   command:
     cmd: /usr/sbin/resolvconf -u
   when: resolv_conf.changed
   tags:
-    - nameservers
+    - resolve
