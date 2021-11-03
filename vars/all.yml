@@ -11,6 +11,10 @@ nameservers:
   - 1.1.1.1 # Cloudfare
   - 9.9.9.9 # Quad9
   - 8.8.8.8 # Google
+wallpaper:
+  url: https://github.com/hakbyte/wallpapers/raw/main/art/7f87f27ad29252ecfc0d_3641x2017.jpg
+  checksum: "sha1:7f87f27ad29252ecfc0dc17ae57b89273150e5b2"
+  dest: /usr/share/wallpapers
 
 # Keyboard layout configuration (`/etc/default/keyboard`). See `man keyboard`
 # for more details
