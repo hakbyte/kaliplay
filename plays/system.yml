@@ -13,5 +13,6 @@
     - role: system/sudo
     - role: system/editor
     - role: system/user
+    - role: system/bspwm
     - role: system/vbox
       when: target is defined and target == "vbox"
