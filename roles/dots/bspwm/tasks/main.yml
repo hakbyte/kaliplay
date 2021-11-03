@@ -1,0 +1,28 @@
+---
+- name: Create bspwm config folders
+  file:
+    path: ~/.config/{{ item }}
+    state: directory
+    mode: '700'
+  loop:
+    - bspwm
+    - bspwm/scripts
+  tags:
+    - bspwm
+
+- name: Push bspwm main config file
+  copy:
+    src: bspwmrc
+    dest: ~/.config/bspwm/bspwmrc
+    mode: '700'
+  tags:
+    - bspwm
+
+- name: Push helper scripts
+  copy:
+    src: "{{ item }}"
+    dest: ~/.config/bspwm/scripts
+    mode: '700'
+  with_fileglob: 'scripts/*'
+  tags:
+    - bspwm
