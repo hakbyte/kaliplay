@@ -33,3 +33,12 @@
     shell: /usr/bin/zsh
   tags:
     - base
+
+- name: Download wallpaper
+  get_url:
+    url: "{{ wallpaper.url }}"
+    dest: "{{ wallpaper.dest }}/{{ wallpaper.url | basename }}"
+    checksum: "{{ wallpaper.checksum }}"
+    mode: '644'
+  tags:
+    - base
