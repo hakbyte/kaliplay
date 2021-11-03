@@ -26,3 +26,11 @@
   with_fileglob: 'scripts/*'
   tags:
     - bspwm
+
+- name: Push bspwm variables (vars.sh)
+  template:
+    src: vars.sh.j2
+    dest: ~/.config/bspwm/scripts/vars.sh
+    mode: '700'
+  tags:
+    - bspwm
