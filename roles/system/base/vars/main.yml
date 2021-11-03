@@ -21,6 +21,7 @@ pkg:
   - zsh-syntax-highlighting
 
   # Fonts
+  - fonts-inter
   - fonts-jetbrains-mono
 
   # Hacking tools
