@@ -8,4 +8,5 @@ galaxy_info:
       versions:
         - all
 dependencies:
+  - role: dots/polybar
   - role: dots/sxhkd
