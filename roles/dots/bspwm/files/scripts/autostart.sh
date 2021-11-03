@@ -17,6 +17,9 @@ function run {
 # Hotkey daemon
 run /usr/bin/sxhkd
 
+# Polybar
+run /usr/bin/polybar main -c ~/.config/polybar/config.ini
+
 # Hide mouse pointer if idle
 run /usr/bin/unclutter -idle 1 -root
 
