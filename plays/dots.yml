@@ -2,6 +2,8 @@
 - name: Deploy dotfiles for Kali Linux
   hosts: all
   connection: local
+  vars_files:
+    - ../vars/all.yml
   roles:
     - role: dots/x
     - role: dots/zsh
