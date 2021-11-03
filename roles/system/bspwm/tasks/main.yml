@@ -1,0 +1,6 @@
+---
+- name: Install bspwm and its dependencies
+  apt:
+    name: "{{ pkg }}"
+  tags:
+    - bspwm
