@@ -21,4 +21,4 @@ run /usr/bin/sxhkd
 run /usr/bin/unclutter -idle 1 -root
 
 # Set wallpaper
-run /usr/bin/feh --bg-scale ${wallpaper}
+run /usr/bin/feh --bg-center ${wallpaper}
