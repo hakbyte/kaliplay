@@ -1,0 +1,24 @@
+;
+; See: https://github.com/polybar/polybar/wiki/Configuration#bar-settings
+;
+
+[global/wm]
+include-file = ~/.config/polybar/colors.ini
+include-file = ~/.config/polybar/modules.ini
+
+[bar/main]
+wm-restack        = bspwm
+override-redirect = false
+bottom            = false
+fixed-center      = true
+width             = 100%
+height            = 32
+padding           = 2
+dpi-x             = {{ dpi | default(96) }}
+dpi-y             = {{ dpi | default(96) }}
+background        = ${color.background}
+foreground        = ${color.foreground}
+font-0            = "Inter Semibold:size=11;3"
+modules-left      = bspwm
+modules-center    = title
+modules-right     = date

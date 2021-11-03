@@ -1,0 +1,25 @@
+---
+- name: Create Polybar config folder
+  file:
+    path: ~/.config/polybar
+    state: directory
+    mode: '700'
+  tags:
+    - polybar
+
+- name: Push Polybar config files
+  copy:
+    src: "{{ item }}"
+    dest: ~/.config/polybar/{{ item | basename }}
+    mode: '600'
+  with_fileglob: 'files/*'
+  tags:
+    - polybar
+
+- name: Push Polybar main config file
+  template:
+    src: config.ini.j2
+    dest: ~/.config/polybar/config.ini
+    mode: '600'
+  tags:
+    - polybar
