@@ -3,6 +3,7 @@
   hosts: all
   connection: local
   roles:
+    - role: dots/x
     - role: dots/zsh
     - role: dots/tmux
     - role: dots/alacritty
