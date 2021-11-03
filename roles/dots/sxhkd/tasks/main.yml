@@ -1,0 +1,16 @@
+---
+- name: Create sxhkd config folder
+  file:
+    path: ~/.config/sxhkd
+    state: directory
+    mode: '700'
+  tags:
+    - sxhkd
+
+- name: Push sxhkd config file
+  copy:
+    src: sxhkdrc
+    dest: ~/.config/sxhkd/sxhkdrc
+    mode: '600'
+  tags:
+    - sxhkd

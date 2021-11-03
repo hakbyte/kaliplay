@@ -1,0 +1,144 @@
+#
+# WM independent hotkeys
+#
+
+# Open terminal emulator
+super + Return
+    alacritty
+
+# Open file manager
+super + i
+    thunar
+
+# Make sxhkd reload its configuration file
+super + Escape
+    pkill -USR1 -x sxhkd; \
+    notify-send 'Info' 'sxhkd config reloaded'
+
+#
+# WM hotkeys
+#
+
+# Quit bspwm
+super + ctrl + q
+    bspc quit
+
+# Restart bspwm
+super + ctrl + r
+    bspc wm -r; \
+    notify-send 'Info' 'bspwm restarted'
+
+# Close and kill nodes
+super + {_,shift + }w
+    bspc node -{c,k}
+
+# Alternate between tiled and monocle layout
+super + m
+    bspc desktop -l next
+
+# Send the newest marked node to the newest preselected node
+super + y
+    bspc node newest.marked.local -n newest.!automatic.local
+
+# Swap the current node and the biggest window
+super + g
+    bspc node -s biggest.window
+
+# Reset windows sizes
+super + F9
+    bspc node @/ -E
+
+#
+# State/flags
+#
+
+# Toggle/set the window state: tiled, pseudo tiled, floating, and fullscreen
+super + {t,shift + t,s,f}
+    bspc node -t {\~tiled,\~pseudo_tiled,\~floating,\~fullscreen}
+
+# Set the node flags: marked, locked, sticky, and private
+super + ctrl + {m,x,y,z}
+    bspc node -g {marked,locked,sticky,private}
+
+# Hide window
+super + n
+    bspc node focused -g hidden=on
+
+# Unhide window
+super + u
+    ~/.config/bspwm/scripts/unhide.sh
+
+#
+# Focus/swap
+#
+
+# Focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+    bspc node -{f,s} {west,south,north,east}
+
+# Focus the node for the given path jump
+super + {p,b,comma,period}
+    bspc node -f @{parent,brother,first,second}
+
+# Focus the next/previous window in the current desktop
+super + {_,shift + }c
+    bspc node -f {next,prev}.local.!hidden.window
+
+# Navigate to next/previous desktop in the current monitor
+super + {Left,Right}
+    bspc desktop -f {prev,next}.local
+
+# Focus the last node/desktop
+super + {grave,Tab}
+    bspc {node,desktop} -f last
+
+# Focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# Preselect
+#
+
+# Preselect the direction
+super + ctrl + {h,j,k,l}
+    bspc node -p {west,south,north,east}
+
+# Preselect the ratio
+super + ctrl + {1-9}
+    bspc node -o 0.{1-9}
+
+# Cancel the preselection for the focused node
+super + ctrl + space
+    bspc node -p cancel
+
+# Cancel the preselection for the focused desktop
+super + ctrl + shift + space
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# Move/resize
+#
+
+# Move focused window to previous/next desktop
+super + alt {Left,Right}
+    CYCLE_DIR={prev,next}; \
+    ID=$(bspc query --nodes --node); \
+    bspc node -d ${CYCLE_DIR}; \
+    bspc desktop -f ${CYCLE_DIR}; \
+    bspc node --focus ${ID}
+
+# Move current window to a pre-selected space
+super + shift + m
+    bspc node -n last.!automatic
+
+# Expand/contract window
+super + slash : {h,j,k,l}
+    STEP=20; \
+    SEL={1,2,3,4}; \
+    bspc node -z $(echo "left -${STEP} 0,bottom 0 ${STEP},top 0 -${STEP},right ${STEP} 0" | cut -d',' -f${SEL}) || \
+    bspc node -z $(echo "right -${STEP} 0,top 0 ${STEP},bottom 0 -${STEP},left ${STEP} 0" | cut -d',' -f${SEL})
+
+# Move a floating window
+super + shift + {Left,Down,Up,Right}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
