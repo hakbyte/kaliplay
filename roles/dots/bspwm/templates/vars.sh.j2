@@ -2,3 +2,18 @@
 
 # Set wallpaper
 export wallpaper="{{ wallpaper.dest }}/{{ wallpaper.url | basename }}"
+
+#
+# Dropdown terminal (Quake)
+#
+
+# Get screen dimensions
+screen_width=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+screen_height=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
+
+# Calculate terminal dimensions
+quake_width=$(( $screen_width * 70 / 100 ))
+quake_height=$(( $screen_height * 70 / 100 ))
+pos_x=$(( ($screen_width - $quake_width) / 2 ))
+pos_y=32 # must be same as Polybar's height
+export quake_dimensions="${quake_width}x${quake_height}+${pos_x}+${pos_y}"
