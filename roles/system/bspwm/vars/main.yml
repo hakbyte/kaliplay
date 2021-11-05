@@ -1,7 +1,6 @@
 ---
 pkg:
   - bspwm
-  - dunst
   - polybar
   - rofi
   - sxhkd
