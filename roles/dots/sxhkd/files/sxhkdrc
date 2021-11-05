@@ -14,6 +14,10 @@ super + i
 super + d
     rofi -no-lazy-grab -show drun -config ~/.config/rofi/launcher.rasi
 
+# Toggle dropdown terminal (Quake)
+F12
+    ~/.config/bspwm/scripts/quake.sh
+
 # Make sxhkd reload its configuration file
 super + Escape
     pkill -USR1 -x sxhkd; \
