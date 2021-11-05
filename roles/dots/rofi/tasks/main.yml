@@ -1,0 +1,16 @@
+---
+- name: Create Rofi config directory
+  file:
+    path: ~/.config/rofi
+    state: directory
+    mode: '700'
+  tags:
+    - rofi
+
+- name: Push Rofi config file
+  copy:
+    src: launcher.rasi
+    dest: ~/.config/rofi/launcher.rasi
+    mode: '600'
+  tags:
+    - rofi
