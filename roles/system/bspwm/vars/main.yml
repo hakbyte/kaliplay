@@ -1,6 +1,7 @@
 ---
 pkg:
   - bspwm
+  - picom
   - polybar
   - rofi
   - sxhkd
