@@ -12,6 +12,7 @@
     - role: dots/homedirs
     - role: dots/xdg
     - role: dots/neovim
+    - role: dots/rofi
     - role: dots/polybar
     - role: dots/sxhkd
     - role: dots/bspwm
