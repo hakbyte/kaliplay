@@ -1,0 +1,16 @@
+---
+- name: Create picom config directory
+  file:
+    path: ~/.config/picom
+    state: directory
+    mode: '700'
+  tags:
+    - picom
+
+- name: Push picom config file
+  copy:
+    src: picom.cfg
+    dest: ~/.config/picom/picom.cfg
+    mode: '600'
+  tags:
+    - picom
