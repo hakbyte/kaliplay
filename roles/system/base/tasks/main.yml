@@ -34,6 +34,15 @@
   tags:
     - base
 
+- name: Set mouse cursor size
+  lineinfile:
+    line: "XCURSOR_SIZE=32"
+    path: /etc/environment
+    create: yes
+    mode: '644'
+  tags:
+    - base
+
 - name: Download wallpaper
   get_url:
     url: "{{ wallpaper.url }}"
