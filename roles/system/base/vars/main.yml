@@ -12,6 +12,7 @@ pkg:
   - jq
   - ltrace
   - ripgrep
+  - rlwrap
   - strace
   - xclip
 
