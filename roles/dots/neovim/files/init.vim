@@ -100,11 +100,9 @@ map <silent> <C-Up> :call AddBlankUp()<cr>
 map <silent> <C-Down> :call AddBlankDown()<cr>
 
 " Toggle terminal
-" `F36` is mapped to `Ctrl+F12`. You can verify that by switching to insert mode
-" and pressing this key combination
 let termheight = 15
-nnoremap <silent> <F36> :call ToggleTerm(termheight)<cr>
-tnoremap <silent> <F36> <C-\><C-n>:call ToggleTerm(termheight)<cr>
+nnoremap <silent> <leader>z :call ToggleTerm(termheight)<cr>
+tnoremap <silent> <leader>z <C-\><C-n>:call ToggleTerm(termheight)<cr>
 
 " Double pressing space will bring fzf
 nnoremap <silent> <Leader><Space> :Files<cr>
