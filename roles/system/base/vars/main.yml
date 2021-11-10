@@ -11,6 +11,7 @@ pkg:
   - httpie
   - jq
   - ltrace
+  - pip
   - ripgrep
   - rlwrap
   - strace
